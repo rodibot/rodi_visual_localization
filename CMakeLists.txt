@@ -5,7 +5,7 @@ find_package(catkin REQUIRED)
 
 catkin_package()
 
-catkin_install_python(PROGRAMS scripts/rodi_visual_localization
+catkin_install_python(PROGRAMS scripts/rodi_localizer
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

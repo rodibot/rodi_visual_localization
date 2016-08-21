@@ -1,0 +1,20 @@
+<launch>
+  <arg name="cam_dev"/>
+  <arg name="cam_name" default="camera"/>
+  <arg name="cam_height" default="480"/>
+  <arg name="cam_width" default="640"/>
+  
+  <node pkg="usb_cam" type="usb_cam_node" name="$(arg cam_name)" output="screen">
+    <param name="video_device" value="$(arg cam_dev)"/>
+    <param name="camera_name" value="$(arg cam_name)"/>
+    <param name="camera_frame_id" value="$(arg cam_name)_frame"/>
+    <param name="image_height" value="$(arg cam_height)"/>
+    <param name="image_width" value="$(arg cam_width)"/>
+  </node>  
+
+  <node pkg="camera_calibration" type="cameracalibrator.py" name="camera_calibrator" args="--size 7x5 --square 0.028" output="screen">
+    <remap from="image" to="$(arg cam_name)/image_raw"/>
+    <remap from="camera" to="$(arg cam_name)"/>
+  </node>
+  
+</launch>

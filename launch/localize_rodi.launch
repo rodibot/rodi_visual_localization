@@ -1,0 +1,22 @@
+<launch>
+  
+  <include file="$(find rodi_visual_localization)/launch/include/tracker.launch">
+    <arg name="cam_name" value="x_camera"/>
+    <arg name="cam_dev" value="/dev/video1"/>    
+    <arg name="cam_info" value="$(find rodi_visual_localization)/param/x_camera.yaml"/>   
+  </include>
+  
+  <include file="$(find rodi_visual_localization)/launch/include/tracker.launch">
+    <arg name="cam_name" value="y_camera"/>
+    <arg name="cam_dev" value="/dev/video2"/>
+    <arg name="cam_info" value="$(find rodi_visual_localization)/param/y_camera.yaml"/>   
+  </include>
+  
+  <node pkg="rodi_visual_localization" type="rodi_localizer" name="rodi_localizer" output="screen">
+    <rosparam param="rodi_trackers">
+      [x_camera, y_camera]
+    </rosparam>
+    <param name="rodi_frame" value="rodi"/>
+    <param name="world_frame" value="world"/>
+  </node>
+</launch>

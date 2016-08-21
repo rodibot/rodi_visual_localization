@@ -26,4 +26,7 @@
   <run_depend>usb_cam</run_depend>
   <run_depend>apriltags_ros</run_depend>
   <run_depend>image_proc</run_depend>
+  <run_depend>python-numpy</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>tf</run_depend>
 </package>
