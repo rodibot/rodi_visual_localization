@@ -33,4 +33,6 @@
   <node pkg="rodi_visual_localization" type="rodi_visual_localization" name="rodi_visual_localization">
     <param name="camera_frame" value="top_camera_frame"/>
   </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find rodi_visual_localization)/rviz/visualization.rviz"/>
 </launch>
