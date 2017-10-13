@@ -2,7 +2,7 @@
   <arg name="cam_dev" default="/dev/video1"/>
   <arg name="cam_info" default="$(find rodi_visual_localization)/param/top_camera.yaml"/>
   <arg name="tag_family" default="36h11"/>
-  <arg name="tag_size" default="0.08"/>
+  <arg name="tag_size" default="0.076"/>
 
   <node pkg="usb_cam" type="usb_cam_node" name="top_camera" output="screen">
     <param name="video_device" value="$(arg cam_dev)"/>
@@ -11,7 +11,9 @@
     <param name="camera_name" value="top_camera"/>
     <param name="image_height" value="480"/>
     <param name="image_width" value="640"/>
-  </node>  
+    <param name="pixel_format" value="yuyv"/>
+    <param name="autofocus" value="false"/>
+  </node>
 
   <node pkg="image_proc" type="image_proc" name="top_camera_proc" ns="top_camera"/>
 
@@ -20,11 +22,11 @@
     <remap from="camera_info" to="/top_camera/camera_info"/>
 
     <param name="tag_family" type="str" value="$(arg tag_family)" />
-    
+
     <param name="projected_optics" type="bool" value="true" />
-    
+
     <rosparam param="tag_descriptions" subst_value="true">[
-      {id: 6, size: $(arg tag_size), frame_id: rodi_tag_frame}]
+      {id: 6, size: $(arg tag_size), frame_id: base_frame}]
     </rosparam>
   </node>
 
